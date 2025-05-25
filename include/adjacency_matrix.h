@@ -106,7 +106,7 @@ std::vector<T> AdjacencyMatrix<T>::bellman_ford_algorithm(T v1, T v2) {
             if (weight == 0) continue;
 
             if (distance[v] > distance[u] + weight) {
-                std::cout<<"Negative cycle";
+                std::cout<<"Negative cycle\n";
                 return {};
             }
         }
@@ -118,6 +118,9 @@ template<typename T>
 void AdjacencyMatrix<T>::path_display(std::vector<T>& previous, const std::string& text, T start, T end) {
     if (matrix.empty()) {
         std::cout << "Graph is empty!" << std::endl;
+        return;
+    }
+    if (previous.empty()) {
         return;
     }
     std::vector<T> path;

@@ -104,7 +104,7 @@ std::vector<T> AdjacencyList<T>::bellman_ford_algorithm(T v1, T v2) {
             T v = neighbor.vertex;
             T weight = neighbor.weight;
             if (distance[v] > distance[u] + weight) {
-                std::cerr<<"Negative cycle";
+                std::cout<<"Negative cycle\n";
                 return {};
             }
         }
@@ -116,6 +116,9 @@ template<typename T>
 void AdjacencyList<T>::path_display(std::vector<T>& previous, const std::string& text, T start, T end) {
     if (list.empty()) {
         std::cout << "Graph is empty!" << std::endl;
+        return;
+    }
+    if (previous.empty()) {
         return;
     }
     std::vector<T> path;
