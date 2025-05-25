@@ -1,3 +1,0 @@
-C:/Users/majam/CLionProjects/graph-algorithms/cmake-build-debug/CMakeFiles/graph_algorithms.dir
-C:/Users/majam/CLionProjects/graph-algorithms/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/majam/CLionProjects/graph-algorithms/cmake-build-debug/CMakeFiles/rebuild_cache.dir
