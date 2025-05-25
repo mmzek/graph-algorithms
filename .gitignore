@@ -1,0 +1,28 @@
+# CLion / CMake
+.idea/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+compile_commands.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup / temp files
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Executables / binaries
+*.exe
+*.out
+*.obj
+*.o
+*.a
+*.so
+*.dll
+*.log
