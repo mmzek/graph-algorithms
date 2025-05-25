@@ -8,6 +8,6 @@ add_executable(graph_algorithms main.cpp
         include/adjacency_list.h
         include/utils/write_to_file.h
         include/utils/write_to_file.cpp
-        include/performance_tests.cpp
         include/performance_tests.h
+        include/performance_tests.cpp
 )

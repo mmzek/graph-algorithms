@@ -12,43 +12,73 @@ const int sizes[] = {10,50,100,500,1000};
 constexpr float densities[] = {0.25, 0.5, 0.75, 1.0};
 
 void create_list(int size, float density,int algorithmChoice, AdjacencyList<int>& list) {
-    int graphSize = size*(size -1);
-    for (int j =0; j< static_cast<int>(density) * graphSize;j++) {
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<int> dist_v1(0, size-1);
-        std::uniform_int_distribution<int> dist_v2(0, size-1);
-        const int v1 = dist_v1(gen);
-        const int v2 = dist_v2(gen);
-        int w = 0;
+    auto s = static_cast<float>(size*(size -1));
+    int graphSize =  static_cast<int>(density * s);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dist_weight_pos(1, size);
+    std::uniform_int_distribution<int> dist_weight_neg(-size, size);
+
+    std::vector<std::vector<int>> generateAll;
+    for (int v1 = 0; v1 < size; ++v1) {
+        for (int v2 = 0; v2 < size; ++v2) {
+            if (v1 != v2) {
+                std::vector<int> edge(2);
+                edge[0] = v1;
+                edge[1] = v2;
+                generateAll.push_back(edge);
+            }
+        }
+    }
+    for (int i = 0; i < graphSize; ++i) {
+        std::uniform_int_distribution<int> dist_index(0, static_cast<int>(generateAll.size() - 1));
+        int index = dist_index(gen);
+        int v1 = generateAll[index][0];
+        int v2 = generateAll[index][1];
+        int w =0;
         if (algorithmChoice == 1) {
-            std::uniform_int_distribution<int> dist_pos(0, INT32_MAX);
-            w = dist_pos(gen);
-        }else if (algorithmChoice == 2) {
-            std::uniform_int_distribution<int> dist_neg(INT32_MIN, INT32_MAX);
-            w = dist_neg(gen);
+            w= dist_weight_pos(gen);
+        } else {
+            do{ w = dist_weight_neg(gen);}while(w==0);
         }
         list.addEdge(v1, v2, w);
+        generateAll[index] = generateAll.back();
+        generateAll.pop_back();
     }
 }
 void create_matrix(int size, float density,int algorithmChoice, AdjacencyMatrix<int>& matrix) {
-    int graphSize = size*(size -1);
-    for (int j =0; j<graphSize*static_cast<int>(density);j++) {
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<int> dist_v1(0, size-1);
-        std::uniform_int_distribution<int> dist_v2(0, size-1);
-        const int v1 = dist_v1(gen);
-        const int v2 = dist_v2(gen);
-        int w = 0;
-        if (algorithmChoice == 1) {
-            std::uniform_int_distribution<int> dist_pos(0, INT32_MAX);
-            w = dist_pos(gen);
-        }else if (algorithmChoice == 2) {
-            std::uniform_int_distribution<int> dist_neg(INT32_MIN, INT32_MAX);
-            w = dist_neg(gen);
+    auto s = static_cast<float>(size*(size -1));
+    int graphSize =  static_cast<int>(density * s);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dist_weight_pos(1, size);
+    std::uniform_int_distribution<int> dist_weight_neg(-size, size);
+
+    std::vector<std::vector<int>> generateAll;
+    for (int v1 = 0; v1 < size; ++v1) {
+        for (int v2 = 0; v2 < size; ++v2) {
+            if (v1 != v2) {
+                std::vector<int> edge(2);
+                edge[0] = v1;
+                edge[1] = v2;
+                generateAll.push_back(edge);
+            }
         }
-         matrix.addEdge(v1, v2, w);
+    }
+    for (int i = 0; i < graphSize; ++i) {
+        std::uniform_int_distribution<int> dist_index(0, static_cast<int>(generateAll.size() - 1));
+        int index = dist_index(gen);
+        int v1 = generateAll[index][0];
+        int v2 = generateAll[index][1];
+        int w =0;
+        if (algorithmChoice == 1) {
+            w= dist_weight_pos(gen);
+        } else {
+            do{ w = dist_weight_neg(gen);}while(w==0);
+        }
+        matrix.addEdge(v1, v2, w);
+        generateAll[index] = generateAll.back();
+        generateAll.pop_back();
     }
 }
 
@@ -135,7 +165,7 @@ int chooseAlgorithm() {
             int sizeChoice = 0;
             int densityChoice = 0;
             std::cout <<
-                    "\nChoose graph size:\n1-10\n2-50\n3-100\n4-500\n5-1000\n";
+                    "\nChoose number of vertexes:\n1-10\n2-50\n3-100\n4-500\n5-1000\n";
             std::cin >> sizeChoice;
             std::cout << "\nChoose graph density:\n1-25%\n2-50%\n3-75%\n4-100%\n";
             std::cin >> densityChoice;
