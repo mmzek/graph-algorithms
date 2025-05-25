@@ -1,45 +1,28 @@
-# Pliki kompilatora
-*.o
-*.obj
-*.so
-*.dll
-*.exe
-*.out
-*.a
-*.lib
-
-# Pliki logów i cache
-*.log
-*.tmp
-*.cache
-
-# Pliki edytorów/IDE
-.vscode/
+# CLion / CMake
 .idea/
-*.swp
-*~
-
-# Pliki Makefile (jeśli są generowane automatycznie)
-Makefile
-CMakeCache.txt
+cmake-build-*/
 CMakeFiles/
+CMakeCache.txt
+Makefile
 cmake_install.cmake
-build/
+compile_commands.json
 
-# Pliki testowe lub dane tymczasowe
-*.txt
-*.dat
-*.csv
-
-# Binaria użytkownika (jeśli generujesz własne pliki .bin)
-*.bin
-
-# Pliki z Visual Studio
-*.vcxproj*
-*.sln
-*.user
-*.filters
-
-# Systemowe
+# OS
 .DS_Store
 Thumbs.db
+
+# Backup / temp files
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Executables / binaries
+*.exe
+*.out
+*.obj
+*.o
+*.a
+*.so
+*.dll
+*.log
