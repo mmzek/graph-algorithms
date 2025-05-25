@@ -102,7 +102,7 @@ void performance_tests(int representationChoice, int algorithmChoice, int size, 
                     auto start = std::chrono::high_resolution_clock::now();
                     list.dijkstra_algorithm(0,size-1);
                     auto stop = std::chrono::high_resolution_clock::now();
-                    auto duration = duration_cast<std::chrono::nanoseconds>(stop - start);
+                    auto duration = duration_cast<std::chrono::microseconds>(stop - start);
                     currentDuration += duration.count();
                     break;
                 }
@@ -110,7 +110,7 @@ void performance_tests(int representationChoice, int algorithmChoice, int size, 
                     auto start = std::chrono::high_resolution_clock::now();
                     list.bellman_ford_algorithm(0,size-1);
                     auto stop = std::chrono::high_resolution_clock::now();
-                    auto duration = duration_cast<std::chrono::nanoseconds>(stop - start);
+                    auto duration = duration_cast<std::chrono::microseconds>(stop - start);
                     currentDuration += duration.count();
                     break;
                 }
@@ -120,7 +120,7 @@ void performance_tests(int representationChoice, int algorithmChoice, int size, 
                     auto start = std::chrono::high_resolution_clock::now();
                     matrix.dijkstra_algorithm(0,size-1);
                     auto stop = std::chrono::high_resolution_clock::now();
-                    auto duration = duration_cast<std::chrono::nanoseconds>(stop - start);
+                    auto duration = duration_cast<std::chrono::microseconds>(stop - start);
                     currentDuration += duration.count();
                     break;
                 }
@@ -128,7 +128,7 @@ void performance_tests(int representationChoice, int algorithmChoice, int size, 
                     auto start = std::chrono::high_resolution_clock::now();
                     matrix.bellman_ford_algorithm(0,size-1);
                     auto stop = std::chrono::high_resolution_clock::now();
-                    auto duration = duration_cast<std::chrono::nanoseconds>(stop - start);
+                    auto duration = duration_cast<std::chrono::microseconds>(stop - start);
                     currentDuration += duration.count();
                     break;
                 }

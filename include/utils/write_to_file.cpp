@@ -44,5 +44,5 @@ void toFile(int representationChoice, int algorythmChoice, const unsigned long l
 
     file<< "\nNumber of vertexes: "<< size;
     file<< "\nGraph density: "<< density*100 << "%";
-    file << "\n" << algorythmName << " results measured in nanoseconds: " << duration << "\n";
+    file << "\n" << algorythmName << " results measured in microseconds: " << duration << "\n";
 }
